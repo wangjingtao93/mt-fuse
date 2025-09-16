@@ -1,0 +1,64 @@
+maml:
+  n_inner: 5
+  outer_lr: 0.001
+  inner_lr: 0.01
+  n_epoch: 10
+reptile:
+  n_inner: 5
+  outer_lr: 0.001
+  inner_lr: 0.1
+  n_epoch: 10
+imaml:
+  n_inner: 25
+  outer_lr: 0.001
+  inner_lr: 0.01
+  n_epoch: 25
+dl:
+  n_inner: 25 # 未使用
+  outer_lr: 0.0001 # 未使用
+  inner_lr: 0.0001 # 未使用
+  n_epoch: 10
+pretrain:
+  n_inner: 25 # 未使用
+  outer_lr: 0.0001 # 未使用
+  inner_lr: 0.0001 # 未使用
+  n_epoch: 25
+predict/dl:
+  n_inner: 25 # 未使用
+  outer_lr: 0.0001 # 未使用
+  inner_lr: 0.0001 # 未使用
+  n_epoch: 25 # 未使用
+predict/imaml:
+  n_inner: 25 # 未使用
+  outer_lr: 0.0001 # 未使用
+  inner_lr: 0.0001 # 未使用
+  n_epoch: 25 # 未使用
+
+predict/maml:
+  n_inner: 25 # 未使用
+  outer_lr: 0.0001 # 未使用
+  inner_lr: 0.0001 # 未使用
+  n_epoch: 25 # 未使用
+
+predict/reptile:
+  n_inner: 25 # 未使用
+  outer_lr: 0.0001 # 未使用
+  inner_lr: 0.0001 # 未使用
+  n_epoch: 25 # 未使用
+
+meta_test/maml:
+  n_inner: 20
+  outer_lr: 0.001
+  inner_lr: 0.01
+  n_epoch: 1
+
+meta_test/reptile:
+  n_inner: 20
+  outer_lr: 0.001
+  inner_lr: 0.1
+  n_epoch: 1
+meta_test/imaml:
+  n_inner: 20
+  outer_lr: 0.001
+  inner_lr: 0.01
+  n_epoch: 1

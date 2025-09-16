@@ -1,0 +1,3 @@
+predict_class: ['ffpe_itc', 'ffpe_normal']
+# predict_class: ['ffpe_macro', 'ffpe_normal']
+# predict_class: ['ffpe_macro', 'ffpe_normal']

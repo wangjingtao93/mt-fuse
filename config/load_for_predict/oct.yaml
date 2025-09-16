@@ -1,0 +1,30 @@
+predict/dl:
+  convnet_4:
+    load_path: 'result_20241031/oct/dl/convnet_4/pretrain_True/2024-11-07-09-52-15'
+    meta_epoch_for_predict: 0
+  resnet18:
+    load_path: 'result_20241031/oct/dl/resnet18/pretrain_True/2024-11-04-10-54-23'
+    meta_epoch_for_predict: 0
+  resnet34:
+    load_path: 'result_20241031/oct/dl/resnet34/pretrain_True/2024-11-13-13-44-48'
+    meta_epoch_for_predict: 0
+  resnet50:
+    load_path: 'result_20241031/oct/dl/resnet50/pretrain_True/2024-11-02-23-10-23'
+    meta_epoch_for_predict: 0
+  vit_base_patch16_224:
+    load_path: 'result_20241031/oct/dl/vit_base_patch16_224/pretrain_True/2024-11-02-23-56-06'
+    meta_epoch_for_predict: 0
+  vit_small_patch16_224:
+    load_path: 'result_20241031/oct/dl/vit_small_patch16_224/pretrain_True/2024-11-07-10-54-33'
+    meta_epoch_for_predict: 0
+  retfound:
+    load_path: 'result_20241031/oct/dl/retfound/pretrain_True/2024-11-07-15-15-48'
+    meta_epoch_for_predict: 0
+  meta_found:
+    load_path: 'result_20241031/oct/dl/meta_found/pretrain_True/2024-11-11-15-05-13'
+    # load_path: 'result_20241031/oct/dl/meta_found/pretrain_True/2025-07-09-13-00-29'
+    meta_epoch_for_predict: 0
+predict/maml:
+  meta_found:
+    load_path: 'result_20241031/oct/maml/meta_found/pretrain_True/2024-11-11-20-38-32'
+    meta_epoch_for_predict: 6

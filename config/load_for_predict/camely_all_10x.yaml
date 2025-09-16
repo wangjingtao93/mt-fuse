@@ -1,0 +1,37 @@
+predict/dl:
+  convnet_4: 
+    load_path: 'meta-learning-classfication/result/result_202405028/camely_all_10x/dl/convnet_4/2024-06-16-11-18-27'
+    meta_epoch_for_predict: 0
+  squeezenet1_0: 
+    load_path: 'meta-learning-classfication/result/result_202405028/camely_all_10x/dl/squeezenet1_0/2024-06-15-11-33-04'
+    meta_epoch_for_predict: 0
+  resnet18:
+    load_path: 'meta-learning-classfication/result/result_202405028/camely_all_10x/dl/resnet18/2024-06-15-13-51-54'
+    meta_epoch_for_predict: 0
+  resnet34:
+    load_path: 'meta-learning-classfication/result/result_202405028/camely_all_10x/dl/resnet34/2024-06-15-13-52-37'
+    meta_epoch_for_predict: 0
+  resnet50:
+    load_path: 'meta-learning-classfication/result/result_202405028/camely_all_10x/dl/resnet50/2024-06-15-21-53-03'
+    meta_epoch_for_predict: 0
+  vit_base_patch16_224:
+    load_path: 'meta-learning-classfication/result/result_202405028/camely_all_10x/dl/vit_base_patch16_224/2024-06-15-18-32-35'
+    meta_epoch_for_predict: 0
+  vit_small_patch16_224:
+    load_path: 'meta-learning-classfication/result/result_202405028/camely_all_10x/dl/vit_small_patch16_224/2024-06-15-18-32-52'
+    meta_epoch_for_predict: 0
+  mt_small_model_lymph:
+    load_path: 'meta-learning-classfication/result/result_202405028/camely_all_10x/dl/mt_small_model_lymph/2024-06-15-13-55-11'
+    meta_epoch_for_predict: 0
+predict/imaml:
+  mt_small_model_lymph:
+    load_path: 'meta-learning-classfication/result/result_202405028/camely_all_10x/imaml/mt_small_model_lymph/2024-06-16-16-11-18'
+    meta_epoch_for_predict: 1
+predict/maml:
+  mt_small_model_lymph:
+    load_path: 'meta-learning-classfication/result/result_202405028/camely_all_10x/maml/mt_small_model_lymph/2024-06-16-16-12-59'
+    meta_epoch_for_predict: 7
+predict/reptile:
+  mt_small_model_lymph:
+    load_path: 'meta-learning-classfication/result/result_202405028/camely_all_10x/reptile/mt_small_model_lymph/2024-06-16-16-13-34'
+    meta_epoch_for_predict: 4

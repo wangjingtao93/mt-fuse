@@ -1,0 +1,15 @@
+Confusion Matrix:
+[[0, 3, 0],
+ [3, 1, 0],
+ [1, 2, 0]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.0000    0.0000    0.0000         3
+           1     0.1667    0.2500    0.2000         4
+           2     0.0000    0.0000    0.0000         3
+
+    accuracy                         0.1000        10
+   macro avg     0.0556    0.0833    0.0667        10
+weighted avg     0.0667    0.1000    0.0800        10

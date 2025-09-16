@@ -1,0 +1,37 @@
+predict/dl:
+  convnet_4:
+    load_path: ''
+    meta_epoch_for_predict: 0
+  squeezenet1_0:
+    load_path: ''
+    meta_epoch_for_predict: 0
+  resnet18:
+    load_path: ''
+    meta_epoch_for_predict: 0
+  resnet34:
+    load_path: ''
+    meta_epoch_for_predict: 0
+  resnet50:
+    load_path: ''
+    meta_epoch_for_predict: 0
+  vit_base_patch16_224:
+    load_path: ''
+    meta_epoch_for_predict: 0
+  vit_small_patch16_224:
+    load_path: ''
+    meta_epoch_for_predict: 0
+  mt_small_model_lymph:
+    load_path: ''
+    meta_epoch_for_predict: 0
+predict/imaml:
+  mt_small_model_lymph:
+    load_path: ''
+    meta_epoch_for_predict: 1
+predict/maml:
+  mt_small_model_lymph:
+    load_path: ''
+    meta_epoch_for_predict: 7
+predict/reptile:
+  mt_small_model_lymph:
+    load_path: ''
+    meta_epoch_for_predict: 4

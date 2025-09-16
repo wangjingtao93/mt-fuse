@@ -1,0 +1,38 @@
+
+predict/dl:
+  convnet_4: 
+    load_path: 'meta-learning-classfication/result/result_202405028/multi_centers_ffpe_10x/dl/convnet_4/2024-06-07-21-31-27'
+    meta_epoch_for_predict: 0
+  squeezenet1_0: 
+    load_path: 'meta-learning-classfication/result/result_202405028/multi_centers_ffpe_10x/dl/squeezenet1_0/2024-06-16-10-59-34'
+    meta_epoch_for_predict: 0
+  resnet18:
+    load_path: 'meta-learning-classfication/result/result_202405028/multi_centers_ffpe_10x/dl/resnet18/2024-06-05-11-17-50'
+    meta_epoch_for_predict: 0
+  resnet34:
+    load_path: 'meta-learning-classfication/result/result_202405028/multi_centers_ffpe_10x/dl/resnet34/2024-06-06-08-15-26'
+    meta_epoch_for_predict: 0
+  resnet50:
+    load_path: 'meta-learning-classfication/result/result_202405028/multi_centers_ffpe_10x/dl/resnet50/2024-06-15-21-51-53'
+    meta_epoch_for_predict: 0
+  vit_base_patch16_224:
+    load_path: 'meta-learning-classfication/result/result_202405028/multi_centers_ffpe_10x/dl/vit_base_patch16_224/2024-06-15-21-50-00'
+    meta_epoch_for_predict: 0
+  vit_small_patch16_224:
+    load_path: 'meta-learning-classfication/result/result_202405028/multi_centers_ffpe_10x/dl/vit_small_patch16_224/2024-06-06-08-23-44'
+    meta_epoch_for_predict: 0
+  mt_small_model_lymph:
+    load_path: 'meta-learning-classfication/result/result_202405028/multi_centers_ffpe_10x/dl/mt_small_model_lymph/2024-06-11-12-55-58'
+    meta_epoch_for_predict: 0
+predict/imaml:
+  mt_small_model_lymph:
+    load_path: 'meta-learning-classfication/result/result_202405028/multi_centers_ffpe_10x/imaml/mt_small_model_lymph/2024-06-08-16-54-46'
+    meta_epoch_for_predict: 3
+predict/maml:
+  mt_small_model_lymph:
+    load_path: 'meta-learning-classfication/result/result_202405028/multi_centers_ffpe_10x/maml/mt_small_model_lymph/2024-06-08-16-55-49'
+    meta_epoch_for_predict: 2
+predict/reptile:
+  mt_small_model_lymph:
+    load_path: 'meta-learning-classfication/result/result_202405028/multi_centers_ffpe_10x/reptile/mt_small_model_lymph/2024-06-08-16-56-55'
+    meta_epoch_for_predict: 4
