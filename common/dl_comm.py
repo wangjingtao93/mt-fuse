@@ -14,6 +14,7 @@ from collections import OrderedDict
 
 from common.eval import classification_report_with_specificity as cr
 from common.net_enter.net_enter import net_enter
+from common.time_rec import AdvancedTimer
 
 
 
@@ -24,6 +25,9 @@ class dl_comm():
         self.imagenet_pre_path = '/data1/wangjingtao/workplace/python/pycharm_remote/result/meta-learning-classfication/result/result_20231010_sub10/pre_train/imagenet'
 
         self.fig_path = os.path.join(args.store_dir, 'figures')
+
+        # 创建一个高级计时器
+        self.timer = AdvancedTimer("性能测试")
 
         return None
     def _init_net(self):
@@ -77,7 +81,12 @@ class dl_comm():
         with torch.no_grad():
             for data, target in val_loader:
                 data, target = Variable(data).to(self.device), Variable(target).to(self.device)
+
+                self.timer.start()
                 output = self.model(data)
+                elapsed = self.timer.stop()
+                print(f"第xx次执行耗时: {elapsed:.4f} 秒")
+
                 loss = self.criterion(output, target)
 
                 pred_score_list.append(output.data.cpu().detach().numpy())

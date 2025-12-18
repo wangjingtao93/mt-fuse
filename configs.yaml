@@ -7,7 +7,7 @@ reptile:
   n_inner: 5
   outer_lr: 0.001
   inner_lr: 0.1
-  n_epoch: 10
+  n_epoch: 100
 imaml:
   n_inner: 25
   outer_lr: 0.001
@@ -17,7 +17,7 @@ dl:
   n_inner: 25 # 未使用
   outer_lr: 0.0001 # 未使用
   inner_lr: 0.0001 # 未使用
-  n_epoch: 10
+  n_epoch: 100
 pretrain:
   n_inner: 25 # 未使用
   outer_lr: 0.0001 # 未使用

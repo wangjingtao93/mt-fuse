@@ -1,6 +1,6 @@
 predict/dl:
   convnet_4:
-    load_path: 'result_20241031/oct/dl/convnet_4/pretrain_True/2024-11-07-09-52-15'
+    load_path: 'result_20241031/oct/dl/convnet_4/pretrain_False/2024-11-07-09-52-15'
     meta_epoch_for_predict: 0
   resnet18:
     load_path: 'result_20241031/oct/dl/resnet18/pretrain_True/2024-11-04-10-54-23'

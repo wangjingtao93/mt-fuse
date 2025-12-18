@@ -1,4 +1,3 @@
-from networkx import selfloop_edges
 import torch
 from torch import nn
 from torch import optim

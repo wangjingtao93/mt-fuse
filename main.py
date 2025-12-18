@@ -23,8 +23,8 @@ from  imaml.imaml_enter import imaml_enter
 from maml.maml_enter import maml_enter
 from reptile.reptile_enter import reptile_enter
 from  dl.dl_enter import dl_enter, predict_enter
-from data.pre_train.zk_data_pro import zk_data
-from data.pre_train.st_data_pro import st_sub_data
+from common.others.zk_data_pro import zk_data
+from common.others.st_data_pro import st_sub_data
 from common.meta.meta_test import meta_test_enter
 
 import run as dl_exe
@@ -46,10 +46,13 @@ def main(args):
         final_test, meta_train, meta_test= mini_imagenet_enter(args)
     elif args.datatype == 'source_data_preTran':
         final_test, meta_train = source_data_pre()
-    elif 'thyroid_fuse' in args.datatype:
+    elif 'thyroid_fuse' in args.datatype or  args.datatype=='camelyon17_fuse' or args.datatype=='camelyon16_fuse'\
+        or args.datatype=='camelyon_fuse':
         final_test, meta_train = thyroid_fuse_enter(args)
         meta_test = []
-    elif 'lymph' in args.datatype or 'thyroid' in args.datatype or 'ffpe' in args.datatype or 'bf' in args.datatype or 'multi_centers' in args.datatype or 'camely' in args.datatype or 'crc' in args.datatype or 'background' in args.datatype:
+    elif 'lymph' in args.datatype or 'thyroid' in args.datatype or 'ffpe' in args.datatype or 'bf' \
+        in args.datatype or 'multi_centers' in args.datatype or 'camely' in args.datatype or 'crc' in args.datatype \
+        or 'background' in args.datatype :
         final_test, meta_train = lymph_data(args)
 
 
@@ -96,6 +99,8 @@ def parse_args():
     parser.add_argument('--ablation', type=str, default='')
     parser.add_argument('--num_classes', type=int, default=4)# Total number of fc out_class
     parser.add_argument('--prefix', type=str, default='debug') # The network architecture
+    parser.add_argument('--idx_fold', nargs='+', type=int, default=[],  # 默认值
+                       help='List of integers (default: [1, 2, 3])') # The network architecture
 
     # net
     parser.add_argument('--is_load_imagenet', type=lambda x: (str(x).lower() == 'true'), default=False)
@@ -189,7 +194,7 @@ def create_store_dir(args):
     else:
         is_pretrain = 'pretrain_' +str(args.is_load_imagenet)
     
-    if args.isheatmap:
+    if args.isheatmap and "predict" in args.alg:
         str_heatmap = 'heatmpap'
     else:
         str_heatmap = ''
@@ -204,8 +209,8 @@ def create_store_dir(args):
 if __name__ == '__main__':
     args = parse_args()
 
-    # utils.set_gpu(args.gpu)
-    torch.cuda.set_device(args.gpu[0])
+    utils.set_gpu(args.gpu)
+    # torch.cuda.set_device(args.gpu[0])
     utils.set_seed(args.seed)
 
     create_store_dir(args)

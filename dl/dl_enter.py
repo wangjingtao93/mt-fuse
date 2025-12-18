@@ -20,8 +20,10 @@ def dl_enter(args, test_data):
     dlf.trainer(args,test_data[0], test_data[1], test_data[2], 0)
 
 def predict_enter(args, test_data, meta_epoch_for_predict):
-    
-    if 'lymph' in args.datatype or 'thyroid' in args.datatype or 'ffpe' in args.datatype or 'bf' in args.datatype or 'multi_centers' in args.datatype or 'camely' in args.datatype or 'crc' in args.datatype or 'background' in args.datatype:
+
+    if 'lymph' in args.datatype or 'thyroid' in args.datatype or 'ffpe' in args.datatype or \
+        'bf' in args.datatype or 'multi_centers' in args.datatype or 'camely' in args.datatype \
+            or 'crc' in args.datatype or 'background' in args.datatype:
         if args.isheatmap:
             dlf_pre_lymph.heat_map_fuse_2025(args, meta_epoch_for_predict)
         else:

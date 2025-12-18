@@ -21,26 +21,42 @@ def add_classID(pdframe, dict_labels):
 # 构造多个测试任务
 def originze_df(args):
 
+    fuse_data_dir_ls = ['data/lymph/thyroid_fuse', 'data/lymph/camelyon17_fuse', 'data/lymph/camelyon16_fuse',\
+                        'data/lymph/camelyon_fuse']
     if args.datatype == 'thyroid_fuse_micro':
         target_classes = ['micro', 'normal']
         label_dict = {'micro':1, "normal":0}
+        fuse_data_dir =fuse_data_dir_ls[0]
     elif args.datatype == 'thyroid_fuse_macro':
         target_classes = ['macro', 'normal']
         label_dict = {'macro':1, "normal":0}
+        fuse_data_dir =fuse_data_dir_ls[0]
     elif args.datatype == 'thyroid_fuse_ipbs':
         target_classes = ['ipbs', 'normal']
         label_dict = {'ipbs':1, "normal":0, 'micro':1}
+        fuse_data_dir =fuse_data_dir_ls[0]
     elif args.datatype == 'thyroid_fuse_itcs':
         target_classes = ['itcs', 'normal']
         label_dict = {'itcs':1, "normal":0, 'micro':1}
+        fuse_data_dir =fuse_data_dir_ls[0]
+    elif args.datatype == 'camelyon17_fuse':
+        target_classes = ['micro', 'normal']
+        label_dict = {'micro':1, "normal":0}
+        fuse_data_dir =fuse_data_dir_ls[1]
+    elif args.datatype == 'camelyon16_fuse':
+        target_classes = ['micro', 'normal']
+        label_dict = {'micro':1, "normal":0}
+        fuse_data_dir =fuse_data_dir_ls[2]
+    elif args.datatype == 'camelyon_fuse':
+        target_classes = ['micro', 'normal']
+        label_dict = {'micro':1, "normal":0}
+        fuse_data_dir =fuse_data_dir_ls[3]
 
     test_d = {}
-    data_for_test_id = [1,4]
-    # data_for_test_id = [0,2,3]
-    for i in data_for_test_id:
-        df_meta_test_S = pd.read_csv(os.path.join(args.project_path, f'data/lymph/thyroid_fuse/multi_tasks/{target_classes[0]}/t_{i}_s.csv'))
-        df_meta_test_Q = pd.read_csv(os.path.join(args.project_path, f'data/lymph/thyroid_fuse/multi_tasks/{target_classes[0]}/t_{i}_q.csv'))
-        df_final_test = pd.read_csv(os.path.join(args.project_path, f'data/lymph/thyroid_fuse/multi_tasks/{target_classes[0]}/final_test.csv'))
+    for i in args.idx_fold:
+        df_meta_test_S = pd.read_csv(os.path.join(args.project_path, f'{fuse_data_dir}/multi_tasks/{target_classes[0]}/t_{i}_s.csv'))
+        df_meta_test_Q = pd.read_csv(os.path.join(args.project_path, f'{fuse_data_dir}/multi_tasks/{target_classes[0]}/t_{i}_q.csv'))
+        df_final_test = pd.read_csv(os.path.join(args.project_path, f'{fuse_data_dir}/multi_tasks/{target_classes[0]}/final_test.csv'))
 
         test_S = add_classID(df_meta_test_S, label_dict)
         test_Q = add_classID(df_meta_test_Q, label_dict)

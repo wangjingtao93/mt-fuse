@@ -8,7 +8,7 @@ def mt_fuse_net_load(args):
     # # 使用timm初始化方式
     model_init = timm.create_model('vit_small_patch16_224', pretrained=False, num_classes=2)
 
-    # model_init.load_state_dict(torch.load('/data1/wangjingtao/workplace/python/pycharm_remote/result/meta-learning-classfication/result/tmp/thyroid_fuse_micro/maml/mt_fuse_model/pretrain_True/2025-08-22-15-19-59/save_meta_pth/meta_epoch_22.pth'))
+    # model_init.load_state_dict(torch.load('/data1/wangjingtao/workplace/python/pycharm_remote/result/meta-learning-classfication/result/tmp/thyroid_fuse_micro/maml/mt_fuse_model/pretrain_False/2025-08-22-15-19-59/save_meta_pth/meta_epoch_22.pth'))
 
     # state_dict1  = model_init.state_dict()
     # state_dict2 = model.state_dict()

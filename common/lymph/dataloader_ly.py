@@ -129,7 +129,13 @@ class TF_Dataset(Dataset):
         self.args = args
         self.img = data_list
         self.resize = self.args.resize
-        self.data_path_prefix= "/data1/wangjingtao/workplace/python/data/classification/lymph/thyroid_fuse/"
+
+        if args.datatype == 'camelyon17_fuse' or args.datatype == 'camelyon16_fuse':
+            self.data_path_prefix= f"/data1/wangjingtao/workplace/python/data/classification/lymph/{args.datatype}"
+        elif args.datatype == 'camelyon_fuse':
+            self.data_path_prefix= "/data1/wangjingtao/workplace/python/data/classification/lymph"
+        else:
+            self.data_path_prefix= "/data1/wangjingtao/workplace/python/data/classification/lymph/throid_fuse"
         
         if mode == 'train':
             self.transform = transforms.Compose([
@@ -158,7 +164,6 @@ class TF_Dataset(Dataset):
     def __getitem__(self, idx):
         image = self.transform(os.path.join(self.data_path_prefix, self.img[idx][0]))
 
-        
         if self.args.is_fuse:
             image_4x = self.transform(os.path.join(self.data_path_prefix, self.img[idx][0].replace('/256/', '/768/')))
             image = torch.cat((image, image_4x), dim=0)

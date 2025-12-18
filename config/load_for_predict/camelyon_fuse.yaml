@@ -1,0 +1,41 @@
+
+predict/dl:
+  convnet_4:
+    load_path: ''
+    meta_epoch_for_predict: 0
+  squeezenet1_0:
+    load_path: ''
+    meta_epoch_for_predict: 0
+  resnet18:
+    load_path: ''
+    meta_epoch_for_predict: 0
+  resnet34:
+    load_path: 'result_thyroid_fuse_20250817/camelyon_fuse/dl/resnet34/pretrain_False/2025-12-12-23-14-02'
+    meta_epoch_for_predict: 0
+  resnet50:
+    load_path: ''
+    meta_epoch_for_predict: 0
+  vit_tiny_patch16_224:
+    load_path: ''
+    meta_epoch_for_predict: 0
+  vit_base_patch16_224:
+    load_path: 'result_thyroid_fuse_20250817/camelyon_fuse/dl/vit_base_patch16_224/pretrain_False/2025-12-13-11-38-51'
+    meta_epoch_for_predict: 0
+  vit_small_patch16_224:
+    load_path: 'result_thyroid_fuse_20250817/camelyon_fuse/dl/vit_small_patch16_224/pretrain_False/2025-12-13-11-42-10'
+    meta_epoch_for_predict: 0
+  mt_fuse_model:
+    load_path: 'result_thyroid_fuse_20250817/camelyon_fuse/dl/mt_fuse_model/pretrain_False/2025-12-13-11-44-19'
+    meta_epoch_for_predict: 0
+predict/imaml:
+  mt_fuse_model:
+    load_path: ''
+    meta_epoch_for_predict:
+predict/maml:
+  mt_fuse_model:
+    load_path: ''
+    meta_epoch_for_predict:
+predict/reptile:
+  mt_fuse_model:
+    load_path: 'result_thyroid_fuse_20250817/camelyon_fuse/reptile/mt_fuse_model/pretrain_True/2025-12-13-11-45-34'
+    meta_epoch_for_predict: 0

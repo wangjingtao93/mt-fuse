@@ -14,7 +14,7 @@ from torchvision import transforms
 from common.dl_comm import dl_comm
 import common.utils as utils
 from common.data_enter import lymph_data
-from dl.dl_func import save_fpr_tpr, save_model_output
+from common.record_files import save_fpr_tpr, save_model_output
 
 
 def heat_map_2024(args,meta_epoch):
@@ -204,10 +204,11 @@ def heat_map_fuse_2025(args,meta_epoch):
     bck_model = torchvision.models.resnet18(weights=None)
     num_ftrs = bck_model.fc.in_features
     bck_model.fc = nn.Linear(num_ftrs,  2)
-    bck_model.load_state_dict(torch.load('/data1/wangjingtao/workplace/python/pycharm_remote/result/meta-learning-classfication/result/result_20240528/background_10x/dl/resnet18/2024-07-24-20-18-05/meta_epoch/taskid_0/best_model_for_valset_0.pth', map_location=device))
+    bck_model.load_state_dict(torch.load('/data1/wangjingtao/workplace/python/pycharm_remote/result/meta-learning-classfication\
+                                         /result/result_20240528/background_10x/dl/resnet18/2024-07-24-20-18-05\
+                                         /meta_epoch/taskid_0/best_model_for_valset_0.pth', map_location=device))
     bck_model.to(device=device)
     bck_model.eval()
-
 
     for task_idx in [1,4]:
         dl_ob = dl_comm(args)
@@ -217,6 +218,8 @@ def heat_map_fuse_2025(args,meta_epoch):
         relative_path = '/data1/wangjingtao/workplace/python/pycharm_remote/result/meta-learning-classfication/result'
         if args.load == '':
             exit('Predict Mode must give load path')
+        elif not os.path.exists(args.load):
+             exit('load pth file is not exist')
         else:
             # dl_ob.model.load_state_dict(torch.load(args.load))
             state_dict_path = os.path.join(relative_path, args.load, 'meta_epoch', f'taskid_{task_idx}', f'best_model_for_valset_{meta_epoch}.pth')
@@ -424,19 +427,23 @@ def predict(args, loader_ls, meta_epoch):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(device)
 
+
     task_num = len(loader_ls)
     all_tasks_value = []
 
     # for task_idx in range(task_num):
-    for task_idx in loader_ls.keys():
+    # for task_idx in loader_ls.keys():
+    for task_idx in args.idx_fold:
         test_loader = loader_ls[task_idx]
-
+    
         dl_ob = dl_comm(args)
         dl_ob._init_net()
         dl_ob._init_opt()
 
         if args.load == '':
             exit('Predict Mode must give load path')
+        elif not os.path.exists(args.load):
+             exit('load pth file is not exist')
         else:
             # dl_ob.model.load_state_dict(torch.load(args.load))
             state_dict_path = os.path.join(relative_path, args.load, 'meta_epoch', f'taskid_{task_idx}', f'best_model_for_valset_{meta_epoch}.pth')
@@ -444,6 +451,9 @@ def predict(args, loader_ls, meta_epoch):
             print(f'predict_load_path: {state_dict_path}')
 
         res_test = dl_ob.val(test_loader)
+
+        # 打印时间信息
+        dl_ob.timer.print_statistics()
 
         all_tasks_value.append([res_test['acc'],  res_test['auc'], res_test['prec'], res_test['recall'], res_test['f1'],res_test['ka'], res_test['sens'], res_test['spec']])
 

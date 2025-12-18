@@ -105,6 +105,6 @@ def run_epoch(epoch, args, model, meta_train_loader, test_ls):
         final_test_val_values = [0,0,0,0,0]
         final_ave_tasks=[0,0,0,0,0]
     else:
-        final_test_val_values, final_ave_tasks,_,_ = dlf.trainer(args, test_ls[0], test_ls[1], test_ls[2], epoch)
+        final_test_val_values, final_ave_tasks= dlf.trainer(args, test_ls[0], test_ls[1], test_ls[2], epoch)
 
     return res, final_test_val_values, final_ave_tasks

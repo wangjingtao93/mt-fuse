@@ -103,8 +103,15 @@ class GBML:
         elif self.args.net == 'mt_fuse_model':
             self.network = MT_Fuse_Model(num_classes=self.args.num_classes,embed_dim=384, num_heads=6, is_fuse=False)
             # 使用timm初始化方式
-            model_init = timm.create_model('vit_small_patch16_224', pretrained=self.args.is_meta_load_imagenet, num_classes=2)
+            # model_init = timm.create_model('vit_small_patch16_224', pretrained=self.args.is_meta_load_imagenet, num_classes=2)
 
+            # 直接加载
+            if self.args.is_meta_load_imagenet:
+                model_init = timm.create_model('vit_small_patch16_224', pretrained=False, num_classes=2)
+                model_init.load_state_dict(torch.load('/data1/wangjingtao/workplace/python/pycharm_remote/result/meta-learning-classfication/result/checkpoint/vit/vit_small_patch16_224.pth'))
+            else:
+                 model_init = timm.create_model('vit_small_patch16_224', pretrained=False, num_classes=2)
+                 
             state_dict1  = model_init.state_dict()
             state_dict2 =  self.network.state_dict()
             for name, param in state_dict1.items():

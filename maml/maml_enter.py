@@ -189,14 +189,14 @@ def run_epoch(meta_epoch, args, model, meta_train_loader, meta_test_loader, test
     if len(test_ls[0]) == 0:
         final_test_val_values = [0,0,0,0,0]
         final_ave_tasks=[0,0,0,0,0]
-        final_test_val_values_sens = [0,0,0,0,0]
-        final_ave_tasks_sens=[0,0,0,0,0]
+        # final_test_val_values_sens = [0,0,0,0,0]
+        # final_ave_tasks_sens=[0,0,0,0,0]
     else:
-        final_test_val_values, final_ave_tasks,  final_test_val_values_sens, final_ave_tasks_sens= dlf.trainer(args, test_ls[0], test_ls[1], test_ls[2], meta_epoch)
+        final_test_val_values, final_ave_tasks= dlf.trainer(args, test_ls[0], test_ls[1], test_ls[2], meta_epoch)
 
     res['final_test_val_values'] = final_test_val_values
     res['final_ave_tasks'] = final_ave_tasks
-    res['final_test_val_values_sens'] = final_test_val_values_sens
-    res['final_ave_tasks_sens'] =final_ave_tasks_sens
+    # res['final_test_val_values_sens'] = final_test_val_values_sens
+    # res['final_ave_tasks_sens'] =final_ave_tasks_sens
 
     return res

@@ -14,13 +14,13 @@ def gen_args():
     relative_path = project_path.replace('pycharm_remote/', 'pycharm_remote/result/')
     save_path = os.path.join(relative_path, 'result/result_thyroid_fuse_20250817' )
     # save_path = os.path.join(relative_path, 'result/tmp/' )
-    gpu = 1
+    gpu = 2
     data_type_ls = {0:'thyroid_4x', 1:'thyroid_10x', 2:'multi_centers_ffpe_4x', 3:'multi_centers_ffpe_10x', 4:'multi_centers_bf_4x',
                     5:'multi_centers_bf_10x', 6:'camely_16_4x', 7:'camely_16_10x', 8:'camely_17_4x', 9:'camely_17_10x',
                     10:'camely_all_4x', 11:'camely_all_10x', 12:'crc-4x', 13:'crc-10x', 14:'background_10x', 15:'oct',
                     16:'mini_imagenet', 17:'thyroid_fuse_micro',18:'thyroid_fuse_macro', 19:'thyroid_fuse_ipbs',
-                    20:'thyroid_fuse_itcs'}
-    datatype = data_type_ls[17]
+                    20:'thyroid_fuse_itcs', 21:'camelyon17_fuse', 22:'camelyon16_fuse', 23:'camelyon_fuse'}
+    datatype = data_type_ls[23]
 
     algs = {0:'dl', 1:'pretrain', 2:'maml', 3:'imaml', 4:'reptile', 5:'predict/dl', 6:'predict/imaml', 7:'predict/maml',
             8:'predict/reptile',9:'meta_test/maml'}
@@ -33,8 +33,8 @@ def gen_args():
                    24:'vit_base_patch16_224_depth_3', 25:'vit_tiny_patch16_224', 26:'vit_small_patch16_224', 27:'mt_tiny_model_lymph',
                    29:'mtb', 30:'mtb_res', 31:'mtb_6b_mfc', 32:'mt_small_model_lymph', 33:'retfound', 34: 'conv_84', 35: 'meta_found',
                    36:'mt_fuse_model'}
-    # 使用了 1 16 17 18 21 22 26 32
-    net = model_names[2]
+
+    net = model_names[26]
 
     ablation_ls = ['', 'ablation/fuse_c', 'ablation/meta_fuse_n','ablation/meta_fuse_c', 'ablation/meta_n_fuse_n']
     ablation_prfiex = ablation_ls[0]
@@ -52,25 +52,26 @@ def gen_args():
     # base settings data
     args_dict['datatype'] = datatype
     args_dict['resize'] = 224
+    args_dict['idx_fold'] = [0]
 
     # net
     args_dict['alg'] = alg
     args_dict['net'] = net
     args_dict['num_classes'] = 2
     # net load
-    args_dict['is_load_imagenet'] = True
+    args_dict['is_load_imagenet'] = False
     args_dict['is_meta_load_imagenet'] = True
     args_dict['load'] = ''
     args_dict['is_lock_notmeta'] = True
     # net met_fuse_model
     args_dict['is_fuse'] = True
     if net != model_names[36]:
-        args_dict['is_fuse'] = True
+        args_dict['is_fuse'] = False
     #net mt
     args_dict['trans_depth'] = 6
 
     # predict
-    args_dict['isheatmap'] = True
+    args_dict['isheatmap'] = False
 
     # dl
     args_dict['n_epoch'] = result[alg]['n_epoch'] # 用于dl train
@@ -112,7 +113,8 @@ def gen_args():
 
 
 
-    args_dict['description_name'] = 'n_train_tasks_' + str(args_dict['n_train_tasks'])
+    # args_dict['description_name'] = 'n_train_tasks_' + str(args_dict['n_train_tasks'])
+    args_dict['description_name'] = 'n_epoch' + str(args_dict['n_epoch'])
 
     return args_dict
 
@@ -155,9 +157,12 @@ def check_error(args_dict):
     # predict, predict load path check
     datatpye = load_values[10]
 
-    thyroid_ls = ['thyroid_4x', 'thyroid_10x', 'multi_centers_ffpe_4x','multi_centers_ffpe_10x','multi_centers_bf_4x','multi_centers_bf_10x', 'camely_16_4x', 'camely_16_10x', 'camely_17_4x', 'camely_17_10x', 'camely_all_4x', 'camely_all_10x', 'crc-4x', 'crc-10x', 'background_10x']
+    thyroid_ls = ['thyroid_4x', 'thyroid_10x', 'multi_centers_ffpe_4x','multi_centers_ffpe_10x',\
+                  'multi_centers_bf_4x','multi_centers_bf_10x', 'camely_16_4x', 'camely_16_10x',\
+                    'camely_17_4x', 'camely_17_10x', 'camely_all_4x', 'camely_all_10x', 'crc-4x', \
+                    'crc-10x', 'background_10x']
 
-    if 'thyroid_fuse' in args_dict['datatype']:
+    if 'thyroid_fuse' in args_dict['datatype'] or 'camelyon_fuse' in args_dict['datatype']:
         if args_dict['net'] == 'mt_fuse_model':
             if args_dict['alg'] == 'predict/dl' and not args_dict['is_fuse']:
                 raise ValueError('mt_fuse_model in predict/dl must set is_fuse=True')
