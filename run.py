@@ -59,7 +59,7 @@ def gen_args():
     args_dict['net'] = net
     args_dict['num_classes'] = 2
     # net load
-    args_dict['is_load_imagenet'] = False
+    args_dict['is_load_imagenet'] = True
     args_dict['is_meta_load_imagenet'] = True
     args_dict['load'] = ''
     args_dict['is_lock_notmeta'] = True
